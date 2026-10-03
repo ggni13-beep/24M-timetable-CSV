@@ -89,7 +89,6 @@
           <h1 class="font-bold text-sm md:text-2xl leading-tight tracking-wide text-white">臺大醫院 PGY RT 24M 評核集點卡</h1>
         </div>
         <div class="flex items-center space-x-1.5 md:space-x-2">
-          <!-- 1. 新增 CSV 導出按鈕 -->
           <button onclick="exportCSV()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] md:text-sm px-2 md:px-3.5 py-1 md:py-1.5 rounded-lg font-semibold flex items-center gap-1 transition shadow">
             <i class="fa-solid fa-file-csv"></i> 導出 CSV
           </button>
@@ -112,7 +111,7 @@
           <input type="text" id="studentIdInput" class="bg-slate-800 border border-slate-600 rounded px-1 md:px-2 py-0.5 text-sky-300 font-mono w-16 md:w-24 focus:outline-none focus:border-sky-400 text-[11px] md:text-base" value="030634">
         </div>
         <div class="flex items-center gap-0.5">
-          <span>Mentor：</span>
+          <span>專責導師：</span>
           <input type="text" id="mentorInput" placeholder="請輸入導師" class="bg-slate-800 border border-slate-600 rounded px-1 md:px-2 py-0.5 text-sky-300 font-medium w-20 md:w-32 focus:outline-none focus:border-sky-400 text-[11px] md:text-base">
         </div>
         <div class="flex items-center gap-0.5">
@@ -121,7 +120,7 @@
         </div>
         <div class="flex items-center gap-0.5 text-amber-300">
           <span>預計完訓日：</span>
-          <span id="gradDateBadge" class="font-mono font-bold bg-amber-500/20 px-1 md:px-2 py-0.5 rounded border border-amber-500/30 text-amber-300 text-[11px] md:text-base">2027/07/31</span>
+          <span id="gradDateBadge" class="font-mono font-bold bg-amber-500/20 px-1 md:px-2 py-0.5 rounded border border-amber-500/30 text-amber-300 text-[11px] md:text-base">2027-07-31</span>
         </div>
         <span id="pgyMonthBadge" class="bg-sky-500/20 text-sky-300 border border-sky-500/40 px-1.5 md:px-2.5 py-0.5 rounded-full font-bold text-[11px] md:text-base">目前 PGY：M14</span>
       </div>
@@ -328,9 +327,9 @@
               <div class="space-y-1">
                 <span class="text-[11px] font-semibold text-slate-600">導師生活輔導訪談 (每月)：</span>
                 <div class="flex flex-wrap gap-1 text-xs">
-                  <button data-id="m_m1" class="stamp-btn px-2 py-0.5 border rounded bg-slate-50">M1訪談</button>
-                  <button data-id="m_m2" class="stamp-btn px-2 py-0.5 border rounded bg-slate-50">M2訪談</button>
-                  <button data-id="m_m3" class="stamp-btn px-2 py-0.5 border rounded bg-slate-50">M3訪談</button>
+                  <button data-id="m_m1" data-name="M1訪談" class="stamp-btn px-2 py-0.5 border rounded bg-slate-50">M1訪談</button>
+                  <button data-id="m_m2" data-name="M2訪談" class="stamp-btn px-2 py-0.5 border rounded bg-slate-50">M2訪談</button>
+                  <button data-id="m_m3" data-name="M3訪談" class="stamp-btn px-2 py-0.5 border rounded bg-slate-50">M3訪談</button>
                 </div>
               </div>
               <div class="space-y-1 pt-1">
@@ -479,15 +478,15 @@
               <div class="space-y-1">
                 <span class="text-[11px] font-semibold text-slate-600">導師生活輔導訪談 (每月)：</span>
                 <div class="flex flex-wrap gap-1 text-xs">
-                  <button data-id="m_m4" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M4</button>
-                  <button data-id="m_m5" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M5</button>
-                  <button data-id="m_m6" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M6</button>
-                  <button data-id="m_m7" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M7</button>
-                  <button data-id="m_m8" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M8</button>
-                  <button data-id="m_m9" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M9</button>
-                  <button data-id="m_m10" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M10</button>
-                  <button data-id="m_m11" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M11</button>
-                  <button data-id="m_m12" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M12</button>
+                  <button data-id="m_m4" data-name="M4" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M4</button>
+                  <button data-id="m_m5" data-name="M5" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M5</button>
+                  <button data-id="m_m6" data-name="M6" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M6</button>
+                  <button data-id="m_m7" data-name="M7" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M7</button>
+                  <button data-id="m_m8" data-name="M8" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M8</button>
+                  <button data-id="m_m9" data-name="M9" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M9</button>
+                  <button data-id="m_m10" data-name="M10" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M10</button>
+                  <button data-id="m_m11" data-name="M11" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M11</button>
+                  <button data-id="m_m12" data-name="M12" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50">M12</button>
                 </div>
               </div>
               <div class="space-y-1 pt-1">
@@ -619,18 +618,18 @@
               <div class="space-y-1">
                 <span class="text-[11px] font-semibold text-slate-600">導師生活輔導訪談 (每月)：</span>
                 <div class="flex flex-wrap gap-1 text-xs">
-                  <button data-id="m_m13" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M13</button>
-                  <button data-id="m_m14" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M14</button>
-                  <button data-id="m_m15" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M15</button>
-                  <button data-id="m_m16" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M16</button>
-                  <button data-id="m_m17" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M17</button>
-                  <button data-id="m_m18" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M18</button>
-                  <button data-id="m_m19" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M19</button>
-                  <button data-id="m_m20" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M20</button>
-                  <button data-id="m_m21" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M21</button>
-                  <button data-id="m_m22" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M22</button>
-                  <button data-id="m_m23" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M23</button>
-                  <button data-id="m_m24" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M24</button>
+                  <button data-id="m_m13" data-name="M13" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M13</button>
+                  <button data-id="m_m14" data-name="M14" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M14</button>
+                  <button data-id="m_m15" data-name="M15" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M15</button>
+                  <button data-id="m_m16" data-name="M16" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M16</button>
+                  <button data-id="m_m17" data-name="M17" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M17</button>
+                  <button data-id="m_m18" data-name="M18" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M18</button>
+                  <button data-id="m_m19" data-name="M19" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M19</button>
+                  <button data-id="m_m20" data-name="M20" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M20</button>
+                  <button data-id="m_m21" data-name="M21" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M21</button>
+                  <button data-id="m_m22" data-name="M22" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M22</button>
+                  <button data-id="m_m23" data-name="M23" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M23</button>
+                  <button data-id="m_m24" data-name="M24" class="stamp-btn px-1.5 py-0.5 border rounded bg-slate-50 text-[11px]">M24</button>
                 </div>
               </div>
               <div class="space-y-1 pt-1">
@@ -792,7 +791,7 @@
       const yyyy = gradDate.getFullYear();
       const mm = String(gradDate.getMonth() + 1).padStart(2, '0');
       const dd = String(gradDate.getDate()).padStart(2, '0');
-      document.getElementById('gradDateBadge').innerText = `${yyyy}/${mm}/${dd}`;
+      document.getElementById('gradDateBadge').innerText = `${yyyy}-${mm}-${dd}`;
     }
 
     document.getElementById('startDateInput').addEventListener('change', (e) => {
@@ -1075,7 +1074,7 @@
             const name = el.getAttribute('data-name');
             el.innerText = `${name} (${val})${dateStr}`;
           } else {
-            const name = el.innerText.split(' ')[0];
+            const name = el.getAttribute('data-name') || el.innerText.split(' ')[0];
             el.innerText = `${name} (完成)${dateStr}`;
           }
         } else {
@@ -1116,7 +1115,7 @@
       });
     }
 
-    // 2. 日期選擇 Modal 控制機制
+    // Modal 控制機制 (月曆點選日期)
     window.openDateModal = function(el) {
       currentTargetEl = el;
       const id = el.getAttribute('data-id');
@@ -1145,10 +1144,10 @@
       const id = el.getAttribute('data-id');
       closeDateModal();
 
-      // 先記錄日期
+      // 先記錄選取的日期
       localDates[id] = selectedDate;
 
-      // 續接原本的評分邏輯
+      // 續接原本的分數 key in 邏輯
       processItemScore(el, id);
     };
 
@@ -1245,7 +1244,7 @@
       document.querySelectorAll('[data-id]').forEach(el => {
         el.addEventListener('click', () => {
           const id = el.getAttribute('data-id');
-          // 若已完成，再點擊視為取消/編輯；若未完成則直接開啟月曆點選器
+          // 若已有紀錄，點擊視為編輯；若無紀錄則先開啟月曆選擇器
           if (localScores[id] !== undefined) {
             processItemScore(el, id);
           } else {
@@ -1255,14 +1254,14 @@
       });
     }
 
-    // 3. CSV 導出功能 (匯出所有 key in 資料與日期)
+    // CSV 導出功能 (匯出所有已填寫資料與日期)
     window.exportCSV = function() {
       const studentId = document.getElementById('studentIdInput').value || pgyStudentId;
       const mentor = document.getElementById('mentorInput').value || '未填寫';
       const startDate = document.getElementById('startDateInput').value || '';
       const gradDate = document.getElementById('gradDateBadge').innerText || '';
       
-      let csvContent = "\uFEFF"; // UTF-8 BOM
+      let csvContent = "\uFEFF"; // UTF-8 BOM，解決 Excel 開啟中文亂碼問題
       csvContent += "學員員編,專責導師,到職日,預計完訓日,項目ID,項目名稱,評分/狀態,完成日期\n";
 
       document.querySelectorAll('[data-id]').forEach(el => {
@@ -1280,7 +1279,7 @@
       const link = document.createElement("a");
       const url = URL.createObjectURL(blob);
       link.setAttribute("href", url);
-      link.setAttribute("download", `PGY_RT_${studentId}_評核完整歷程報告.csv`);
+      link.setAttribute("download", `PGY_RT_${studentId}_評核歷程報告.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
