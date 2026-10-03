@@ -502,7 +502,7 @@
                 <div class="flex flex-wrap gap-1 text-xs">
                   <button data-id="cbd_m6" data-name="M6" class="stamp-btn cbd-btn px-2 py-0.5 border rounded bg-amber-50/50 text-amber-800 text-[11px] font-bold">M6</button>
                   <button data-id="cbd_m9" data-name="M9" class="stamp-btn cbd-btn px-2 py-0.5 border rounded bg-amber-50/50 text-amber-800 text-[11px] font-bold">M9</button>
-                  <button data-id="cbd_m12" data-name="M12" class="stamp-btn cbd-btn px-2.5 py-2.5 border rounded bg-amber-50/50 text-amber-800 text-[11px] font-bold">M12</button>
+                  <button data-id="cbd_m12" data-name="M12" class="stamp-btn cbd-btn px-2.5 py-0.5 border rounded bg-amber-50/50 text-amber-800 text-[11px] font-bold">M12</button>
                 </div>
               </div>
               <div class="space-y-1 pt-1">
@@ -1144,10 +1144,10 @@
       const id = el.getAttribute('data-id');
       closeDateModal();
 
-      // 先記錄選取的日期
+      // 紀錄選取的日期
       localDates[id] = selectedDate;
 
-      // 續接原本的分數 key in 邏輯
+      // 續接原本的分數/等級 key in 邏輯
       processItemScore(el, id);
     };
 
@@ -1244,7 +1244,6 @@
       document.querySelectorAll('[data-id]').forEach(el => {
         el.addEventListener('click', () => {
           const id = el.getAttribute('data-id');
-          // 若已有紀錄，點擊視為編輯；若無紀錄則先開啟月曆選擇器
           if (localScores[id] !== undefined) {
             processItemScore(el, id);
           } else {
@@ -1254,24 +1253,31 @@
       });
     }
 
-    // CSV 導出功能 (匯出所有已填寫資料與日期)
+    // 精準修復：導出 CSV 函數（正確攜帶 completedDate 並解決 Excel 顯示格式問題）
     window.exportCSV = function() {
       const studentId = document.getElementById('studentIdInput').value || pgyStudentId;
       const mentor = document.getElementById('mentorInput').value || '未填寫';
-      const startDate = document.getElementById('startDateInput').value || '';
-      const gradDate = document.getElementById('gradDateBadge').innerText || '';
       
-      let csvContent = "\uFEFF"; // UTF-8 BOM，解決 Excel 開啟中文亂碼問題
+      // 確保日期寫入格式為標準 YYYY-MM-DD
+      const rawStartDate = document.getElementById('startDateInput').value || '';
+      const startDate = rawStartDate.replace(/\//g, '-');
+      
+      const rawGradDate = document.getElementById('gradDateBadge').innerText || '';
+      const gradDate = rawGradDate.replace(/\//g, '-');
+      
+      let csvContent = "\uFEFF"; // UTF-8 BOM，防止 Excel 開啟中文亂碼
       csvContent += "學員員編,專責導師,到職日,預計完訓日,項目ID,項目名稱,評分/狀態,完成日期\n";
 
       document.querySelectorAll('[data-id]').forEach(el => {
         const id = el.getAttribute('data-id');
         const name = el.getAttribute('data-label') || el.getAttribute('data-name') || id;
         const val = localScores[id] !== undefined ? localScores[id] : '';
-        const date = localDates[id] || '';
+        
+        // 精準抓取實際點選完成日期
+        const completedDate = localDates[id] ? String(localDates[id]).replace(/\//g, '-') : '';
         
         if (val !== '') {
-          csvContent += `"${studentId}","${mentor}","${startDate}","${gradDate}","${id}","${name}","${val}","${date}"\n`;
+          csvContent += `"${studentId}","${mentor}","${startDate}","${gradDate}","${id}","${name}","${val}","${completedDate}"\n`;
         }
       });
 
