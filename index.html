@@ -767,7 +767,7 @@
 
     let studentRef = ref(db, `pgy_students/${pgyStudentId}`);
     let localScores = {};
-    let localDates = {}; // 儲存各項目的實際完成日期 (YYYY-MM-DD)
+    let localDates = {}; // 全域物件：儲存各項目的實際完成日期 (YYYY-MM-DD)
     let charts = {};
     let activeSiriMonth = 'm3';
 
@@ -998,6 +998,7 @@
         return isNaN(num) ? 0 : num;
       };
 
+      // 「最新一次有效評分」：第3次 > 第2次 > 第1次 > 0
       const getLatestValidEpaScore = (prefix) => {
         for (let i = 3; i >= 1; i--) {
           const v = localScores[`${prefix}_${i}`];
@@ -1253,12 +1254,12 @@
       });
     }
 
-    // 精準修復：導出 CSV 函數（正確攜帶 completedDate 並解決 Excel 顯示格式問題）
+    // 精準修復：導出 CSV 函數（正確攜帶完成日期 localDates 並寫入欄位）
     window.exportCSV = function() {
       const studentId = document.getElementById('studentIdInput').value || pgyStudentId;
       const mentor = document.getElementById('mentorInput').value || '未填寫';
       
-      // 確保日期寫入格式為標準 YYYY-MM-DD
+      // 確保到職日與預計完訓日為標準 YYYY-MM-DD 格式，解決 Excel 顯示 ##### 問題
       const rawStartDate = document.getElementById('startDateInput').value || '';
       const startDate = rawStartDate.replace(/\//g, '-');
       
@@ -1273,7 +1274,7 @@
         const name = el.getAttribute('data-label') || el.getAttribute('data-name') || id;
         const val = localScores[id] !== undefined ? localScores[id] : '';
         
-        // 精準抓取實際點選完成日期
+        // 正確抓取實際點選完成日期
         const completedDate = localDates[id] ? String(localDates[id]).replace(/\//g, '-') : '';
         
         if (val !== '') {
